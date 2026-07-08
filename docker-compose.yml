@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ecom_user
+      POSTGRES_PASSWORD: ecom_password
+      POSTGRES_DB: ecommerce
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./ecommerce-backend
+    ports:
+      - "8090:8090"
+    environment:
+      - DB_URL=jdbc:postgresql://db:5432/ecommerce
+      - DB_DRIVER=org.postgresql.Driver
+      - DB_USER=ecom_user
+      - DB_PASS=ecom_password
+      - DB_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - DB_DDL=update
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/firebase-key.json
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./ecommerce-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

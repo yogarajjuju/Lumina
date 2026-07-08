@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lumina — Premium ecommerce with a stunning glass UI. Shop electronics, fashion, books & more.">
+  <title>Lumina — Premium Ecommerce</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><text y='32' font-size='32'>✨</text></svg>">
+  <link rel="stylesheet" href="css/glass-design.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div id="shell"></div>
+
+  <!-- Firebase & Razorpay SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAKb5VYNA6mr8SRR8mFNc0t9lsfqF9Veak",
+      authDomain: "lumina-store-695b8.firebaseapp.com",
+      projectId: "lumina-store-695b8",
+      storageBucket: "lumina-store-695b8.firebasestorage.app",
+      messagingSenderId: "431347949662",
+      appId: "1:431347949662:web:afc7161b3cdc275e7fd4cf",
+      measurementId: "G-PG36D7YM3G"
+    };
+    
+    // Fallback variable so the app doesn't crash if keys aren't set yet
+    let firebaseAuthReady = false;
+    if(firebaseConfig.apiKey !== "YOUR_API_KEY") {
+        firebase.initializeApp(firebaseConfig);
+        firebaseAuthReady = true;
+    } else {
+        console.warn("Firebase is not configured! Authentication will use local mock fallback until you provide your keys.");
+    }
+  </script>
+
+  <script src="js/services/mockData.js"></script>
+  <script src="js/services/api.js"></script>
+  <script src="js/components/ui.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/pages/pages.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
