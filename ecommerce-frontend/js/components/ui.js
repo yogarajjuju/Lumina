@@ -58,7 +58,8 @@ var UI = (function(){
     return '<div class="modal-overlay" onclick="if(event.target===this)App.hideAuth()"><div class="modal-content"><button class="modal-close" onclick="App.hideAuth()">✕</button>'
       +'<h2 class="modal-title">'+(mode==='login'?'Welcome Back':'Create Account')+'</h2>'
       +'<div style="display:flex;gap:12px;margin-bottom:20px">'
-      +'<button class="btn btn-secondary" style="flex:1" onclick="App.handleOAuth(\'google\')">🌐 Sign in with Google</button>'
+      +'<button class="btn btn-secondary" style="flex:1" onclick="App.handleOAuth(\'google\')">🌐 Google</button>'
+      +'<button class="btn btn-secondary" style="flex:1" onclick="App.handleOAuth(\'microsoft\')">🪟 Microsoft</button>'
       +'</div><div style="text-align:center;color:var(--text-tertiary);margin-bottom:16px;font-size:0.8rem">OR CONTINUE WITH EMAIL</div>'
       +'<form class="auth-form" id="auth-form" onsubmit="return App.handleAuth(event,\''+ mode +'\')">'
       +(mode==='register'?'<label>Full Name</label><input class="input-glass" type="text" id="auth-name" placeholder="John Doe">':'')
