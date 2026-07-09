@@ -27,6 +27,11 @@ public class DataSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        if (productRepository.count() > 0) {
+            System.out.println("Database already seeded. Skipping...");
+            return;
+        }
+
         // Create demo user
         User demo = new User("Demo User", "demo@shop.com", passwordEncoder.encode("password123"));
         demo.setPhone("9876543210");
