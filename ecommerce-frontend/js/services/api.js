@@ -1,6 +1,8 @@
 // API Service — Real fetch calls with Firebase Auth, falling back to mock data
 var API = (function() {
-  var API_BASE = 'http://localhost:8090/api';
+  // Automatically switch to production backend when deployed
+  var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  var API_BASE = isLocal ? 'http://localhost:8090/api' : 'https://YOUR-RENDER-APP-NAME.onrender.com/api';
   var currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
   var authToken = localStorage.getItem('authToken');
   var cart = JSON.parse(localStorage.getItem('cart') || '[]');

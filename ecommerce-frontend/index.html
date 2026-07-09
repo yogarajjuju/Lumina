@@ -29,10 +29,10 @@
     };
     
     // Fallback variable so the app doesn't crash if keys aren't set yet
-    let firebaseAuthReady = false;
+    window.firebaseAuthReady = false;
     if(firebaseConfig.apiKey !== "YOUR_API_KEY") {
         firebase.initializeApp(firebaseConfig);
-        firebaseAuthReady = true;
+        window.firebaseAuthReady = true;
     } else {
         console.warn("Firebase is not configured! Authentication will use local mock fallback until you provide your keys.");
     }
