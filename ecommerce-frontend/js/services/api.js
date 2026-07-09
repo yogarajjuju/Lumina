@@ -2,7 +2,7 @@
 var API = (function() {
   // Automatically switch to production backend when deployed
   var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-  var API_BASE = isLocal ? 'http://localhost:8090/api' : 'https://YOUR-RENDER-APP-NAME.onrender.com/api';
+  var API_BASE = isLocal ? 'http://localhost:8090/api' : 'https://lumina-b0vv.onrender.com/api';
   var currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
   var authToken = localStorage.getItem('authToken');
   var cart = JSON.parse(localStorage.getItem('cart') || '[]');
