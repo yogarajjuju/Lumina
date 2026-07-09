@@ -102,18 +102,23 @@ var API = (function() {
 
     // Async Fetch methods
     getCategories: async function() { return await request('/categories'); },
-    getProducts: async function() { return await request('/products'); },
+    getProducts: async function() { var res = await request('/products'); return res.content ? res.content : res; },
     getProductById: async function(id) { return await request('/products/' + id); },
     searchProducts: async function(q) {
-      var l=q.toLowerCase(), all=await request('/products');
+      var l=q.toLowerCase(), res=await request('/products/search?q='+encodeURIComponent(q)), all=res.content?res.content:(res.length?res:await this.getProducts());
       return all.filter(function(p){return p.name.toLowerCase().includes(l)||p.description.toLowerCase().includes(l);});
     },
     getDeals: async function() { return await request('/products/deals'); },
     getTrending: async function() { return await request('/products/trending'); },
     getFeatured: async function() { return await request('/products/featured'); },
     getProductsByCategory: async function(catId) {
-      var all=await request('/products');
-      return all.filter(function(p){return p.category && p.category.id===Number(catId);});
+      try {
+          var res = await request('/products/category/' + catId);
+          return res.content ? res.content : res;
+      } catch(e) {
+          var all = await this.getProducts();
+          return all.filter(function(p){return p.category && p.category.id===Number(catId);});
+      }
     },
     getProductReviews: async function(pid) {
       try { return await request('/products/' + pid + '/reviews'); }
