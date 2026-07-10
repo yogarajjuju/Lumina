@@ -129,7 +129,8 @@ public class DataSeeder implements CommandLineRunner {
                                   Integer discount, Integer stock, String imageUrl, String brand,
                                   Double rating, Integer reviewCount, Category category,
                                   boolean featured, boolean dealOfDay) {
-        Product p = new Product(name, desc, price, originalPrice, discount, stock, imageUrl, brand, rating, reviewCount, category);
+        String uniqueImageUrl = "https://picsum.photos/seed/" + name.replaceAll("[^a-zA-Z0-9]", "") + "/500/500";
+        Product p = new Product(name, desc, price, originalPrice, discount, stock, uniqueImageUrl, brand, rating, reviewCount, category);
         p.setFeatured(featured);
         p.setDealOfDay(dealOfDay);
         return productRepository.save(p);
